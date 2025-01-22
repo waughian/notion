@@ -1,74 +1,663 @@
-<html> 
+
+<!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
 <head>
-    <title>Date Widget Notion</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:title" content="*|MC:SUBJECT|*">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>*|MC:SUBJECT|*</title>
     <style>
-      #lbl {
-        display: flex;
-        font-family: sans-serif;
-        font-size: 18pt;
-        color: #8c698a;
-        padding: 5px;
-        border: 1px solid #ffffff;
-        justify-content: left;
-        line-height: 1.5;
-        height:85%;
-        font-weight: bold;
-        flex-direction: row;
-      }
+        /* Fonts */
 
-      #container {
-        display: flex;
-        align-items: flex-start;
-      }
+@font-face {
+    font-family: 'cardo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-400-normal.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-400-normal.woff') format('woff');
+}
 
-      #date{
-          font-size:12pt;
-          font-weight: bold;
-      }
+@font-face {
+    font-family: 'cardo';
+    font-style: italic;
+    font-weight: 400;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-400-italic.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-400-italic.woff') format('woff');
+}
 
-      body{
-          background-color: #ffffff;
-      }
+@font-face {
+    font-family: 'cardo';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-700-normal.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/cardo-latin-700-normal.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-style: normal;
+    font-weight: 300;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-300-normal.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-300-normal.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-400-normal.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-400-normal.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-700-normal.woff2') format('woff2'), url('https://www.spiked-online.com/wp-content/themes/spiked-2018/fonts/roboto-condensed-latin-700-normal.woff') format('woff');
+}
+
+
+/* Reset */
+
+.mcnPreviewText {
+    display: none !important;
+}
+
+html, body {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border: 0;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0;
+}
+
+img {
+    border: 0;
+}
+
+
+/* Links */
+
+.red-links a {
+    color: #c92121 !important;
+}
+
+.dark-blue-links a {
+    color: #2B2E42 !important;
+}
+
+#footer a {
+    color: #ffffff !important;
+}
+
+.button-wrap,
+.button-wrap a {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.button-wrap {
+    display: inline-block;
+    font-family: roboto-condensed, Arial, Helvetica, sans-serif;    font-size: 16px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.button-wrap.bg-dark-blue {
+    background: #2B2E42;
+}
+
+.button-wrap.bg-red {
+    background: #c92121;
+}
+
+.button-wrap.bg-bright-blue {
+    background: #2D8CFF;
+}
+
+
+/* Misc. */
+
+.dark-grey-border {
+    border: 2px solid #383838;
+}
+
+.red-border {
+    border: 2px solid #c92121;
+}
+
+        @media only screen and (min-width: 1px) {
+            .button-wrap {
+    padding: 0 !important;
+}
+
+.button-wrap a {
+    display: inline-block !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 20px !important;
+}
+        }
+
+        @media only screen and (max-width: 639px) {
+            #outer-table {
+    display: block !important;
+    width: auto !important;
+}
+
+#inner-table {
+    display: block !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: auto !important;
+}
+
+.content-row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+img.logo {
+    height: auto !important;
+    width:100% !important;
+}
+
+img#logo-daily {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 210px !important;
+}
+
+img#logo-weekly {
+    max-width: 267px !important;
+}
+
+img#logo-long-read {
+    max-width: 270px !important;
+}
+
+img.w-100 {
+    height:auto !important;
+    max-width: 600px !important;
+    width:100% !important;
+}
+
+.two-cols td.first,
+.two-cols td.second {
+    display: block !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+}
+
+#daily-header td.first,
+#daily-header td.second {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#daily-author {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 240px !important;
+}
+
+#daily-author td {
+    text-align: left !important;
+}
+
+.two-cols td.first {
+    padding-bottom: 20px !important;
+}
+
+.two-cols-special td.first {
+    width: 80px !important;
+}
+
+.two-cols-special td.second {
+    width: auto !important;
+}
+
+td.sell-box {
+    padding: 25px 15px !important;
+}
+
+td.custom-sell-box {
+    padding: 40px 15px !important;
+}
+
+.keyline-row td.line {
+    width: auto !important;
+}
+
+#other-lists td.list-image {
+    border-bottom: 0 !important;
+    height: auto !important;
+}
+
+#other-lists td.list-text {
+    border-bottom: 1px solid #2B2E42 !important;
+    padding: 0 0 20px !important;
+}        }
     </style>
+
 </head>
+
 <body>
-    <div id="lbl"></div>
-</body>
+<!--*|IF:MC_PREVIEW_TEXT|*--> 
+<!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">Plus: Musk, Trump and the ‘Nazi’ slur.</span><!--<![endif]--> 
+<!--*|END:IF|*-->
 
-<script>
-    var weekday = new Array(7);
-    weekday[0] = "sunday";
-    weekday[1] = "monday";
-    weekday[2] = "tuesday";
-    weekday[3] = "wednesday";
-    weekday[4] = "thursday";
-    weekday[5] = "friday";
-    weekday[6] = "saturday";
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    <tr>
+        <td align="center" style="background: #efefef;">
+            <table id="outer-table" border="0" cellpadding="0" cellspacing="0" width="640">
+                <tr>
+                    <td align="center" style="background: #ffffff; padding: 0 0 20px;">
+                        <table border="0" cellpadding="0" cellspacing="0" id="inner-table" width="600">
+                            <!-- *|IFNOT:ARCHIVE_PAGE|* -->
+                            <tr>
+                                <td align="center" style="padding: 5px 0 0; color: #4a4a4a;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 14px;font-weight: 400;line-height: 1.2em;">
+                                    <a href="*|ARCHIVE|*" style="color: #9b9b9b;text-decoration: none;" target="_blank" rel="noopener">View this email in your browser</a>
+                                </td>
+                            </tr>
+                            <!-- *|END:IF|* -->
 
-    const monthNames = ["january", "february", "march", "april", "may", "june",
-      "july", "august", "september", "october", "november", "december"
-    ];
+                            
+<tr>
+    <td align="center" class="content-row" style="padding: 30px 20px 20px;">
+        <table id="daily-header" class="two-cols" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="first" align="left" valign="top" style="width: 50%;">
+                    <a href="https://www.spiked-online.com" target="_blank" rel="noopener"><img id="logo-daily" class="logo" src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/logo-daily.png" height="80" width="210" alt="spiked" style="border: 0; display: block;"></a>
+                </td>
+                <td class="second" align="right" valign="top" style="width: 50%;">
+                    <table id="daily-author" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td align="right" valign="middle" style="color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                Fraser Myers<br>
+                                Deputy editor                            </td>
+                            <td align="right" valign="middle" style="padding: 0 0 0 10px; width: 80px;">
+                                                                <img src="https://www.spiked-online.com/wp-content/uploads/2018/09/fraser_final-300x300.jpg" height="80" width="80" style="border: 0; display: block;">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="content-row" style="padding: 0 20px 40px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td align="center" style="border-bottom: 1px solid #c92121; border-top: 1px solid #c92121; padding: 15px 0; color: #4a4a4a;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 16px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                    21 January 2025                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+    <tr>
+        <td class="content-row" style="padding: 0 20px 40px;">
+            
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        
+    <tr>
+        <td align="left" style="color: #383838;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 18px;font-weight: 400;line-height: 1.5em;">
+            ‘Known to the authorities.’ Hearing those words has become depressingly routine in the wake of an atrocity. And so it is with last summer’s Southport attack. Since Axel Rudakubana pleaded guilty yesterday to the murder of three young girls, we have learnt that he was referred to Prevent, the government’s counter-extremism programme, three times. Although it seems no terrorist motive was uncovered during the police investigation, and he’s not believed to subscribe to any particular ideology, the teenager was known to have an obsession with violence before he carried out his killing spree. So how did he slip through the net? Why were so many red flags ignored? These are the kinds of questions we must now discuss openly. We need a full, frank reckoning with this catastrophic state failure.        </td>
+    </tr>
+</table>
+                    </td>
+    </tr>
 
-    
-    var today = new Date();
-    var hrs = today.getHours();
-    var dayOfWeek = weekday[today.getDay()];
-    var date = `${dayOfWeek}, ${monthNames[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td style="padding: 0 0 15px;">
+                    <a href="https://www.spiked-online.com/2025/01/21/what-really-motivated-axel-rudakubana/" target="_blank" rel="noopener" style="text-decoration: none;">
+                                                <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/axel_rudukabana-720x405.jpg" height="315" width="560" style="border: 0; display: block;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                    Luke Gittos                </td>
+            </tr>
+            <tr>
+                <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                    <a href="https://www.spiked-online.com/2025/01/21/what-really-motivated-axel-rudakubana/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                        What really motivated Axel Rudakubana?                    </a>
+                                    </td>
+            </tr>
+        </table>
+    </td>
+</tr>
 
-    var greet;
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table class="two-cols" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                                <td class="first" valign="top" style="padding: 0 8px 10px 0; width: 272px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="padding: 0 0 10px;">
+                                <a href="https://www.spiked-online.com/2025/01/20/her-name-is-emily-damari/" target="_blank" rel="noopener">
+                                                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/GettyImages-2194172911-720x405.jpg" height="153" width="272" style="border: 0; display: block;">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                Brendan O'Neill                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                                <a href="https://www.spiked-online.com/2025/01/20/her-name-is-emily-damari/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                                    Her name is Emily Damari                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                                <td class="second" valign="top" style="padding: 0 0 10px 8px; width: 272px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="padding: 0 0 10px;">
+                                <a href="https://www.spiked-online.com/2025/01/21/trumps-inauguration-revealed-the-exhaustion-of-the-democrats/" target="_blank" rel="noopener">
+                                                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/trump-inauguration-1-720x405.jpg" height="153" width="272" style="border: 0; display: block;">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                Sean Collins                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                                <a href="https://www.spiked-online.com/2025/01/21/trumps-inauguration-revealed-the-exhaustion-of-the-democrats/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                                    Trump’s inauguration revealed the exhaustion of the Democrats                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                            </tr>
+        </table>
+    </td>
+</tr><tr>
+    <td class="content-row" style="padding: 0 20px 40px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td align="center" style="border-top: 1px solid #c92121; font-size: 0; line-height: 0;">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr><tr>
+    <td class="content-row" style="padding: 0 20px 40px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                <td align="left" style="color: #383838;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 18px;font-weight: 400;line-height: 1.5em;">
+                    <h3><em>spiked</em> readers get a 3-month free trial with Readly</h3>
+<p>Readly gives you access to over 8,000 digital magazines and newspapers in one app. With a single subscription, you can dive into meaningful content with the likes of <em>Time</em>, <em>The Week</em>, <em>New Scientist</em>, the <em>Daily Express</em>, or even <em>Good Food</em> and <em>Country Living</em>. Plus, your account can be shared with up to 5 members.</p>
+<p>Read more of what you love in 2025 with this limited-time offer. Click <a href="https://gb.readly.com/spiked?utm_source=spiked&amp;utm_medium=newsletter&amp;utm_campaign=spiked_jan">here</a> to try it.</p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <a href="https://gb.readly.com/spiked?utm_source=spiked&#038;utm_medium=newsletter&#038;utm_campaign=spiked_jan" target="_blank" rel="noopener" style="text-decoration: none;">
+                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2023/11/readly.jpg" height="227" width="560" style="border: 0; display: block;">
+                </a>
+            </tr>
+        </table>
+    </td>
+</tr><tr>
+    <td class="content-row" style="padding: 0 20px 40px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td align="center" style="border-top: 1px solid #c92121; font-size: 0; line-height: 0;">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td style="padding: 0 0 15px;">
+                    <a href="https://www.spiked-online.com/2025/01/21/trumps-foreign-policy-is-all-about-china/" target="_blank" rel="noopener" style="text-decoration: none;">
+                                                <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/trump-inauguration-720x405.jpg" height="315" width="560" style="border: 0; display: block;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                    James Woudhuysen                </td>
+            </tr>
+            <tr>
+                <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                    <a href="https://www.spiked-online.com/2025/01/21/trumps-foreign-policy-is-all-about-china/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                        Trump&#8217;s foreign policy is all about China                    </a>
+                                    </td>
+            </tr>
+        </table>
+    </td>
+</tr>
 
-    if (hrs < 12)
-        greet = 'good morning.  ';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'good afternoon. ';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'good evening.  ';
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table class="two-cols" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                                <td class="first" valign="top" style="padding: 0 8px 10px 0; width: 272px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="padding: 0 0 10px;">
+                                <a href="https://www.spiked-online.com/2025/01/21/why-wont-the-nazi-slur-die/" target="_blank" rel="noopener">
+                                                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/elon-inauguration-720x405.jpg" height="153" width="272" style="border: 0; display: block;">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                Fraser Myers                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                                <a href="https://www.spiked-online.com/2025/01/21/why-wont-the-nazi-slur-die/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                                    Why won’t the ‘Nazi’ slur die?                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                                <td class="second" valign="top" style="padding: 0 0 10px 8px; width: 272px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="padding: 0 0 10px;">
+                                <a href="https://www.spiked-online.com/2025/01/21/australia-is-in-the-grips-of-an-anti-semitic-nightmare/" target="_blank" rel="noopener">
+                                                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/australian-anti-semetism-720x405.jpg" height="153" width="272" style="border: 0; display: block;">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                Hugo Timms                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                                <a href="https://www.spiked-online.com/2025/01/21/australia-is-in-the-grips-of-an-anti-semitic-nightmare/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                                    Australia is in the grip of an anti-Semitic nightmare                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td style="padding: 0 0 15px;">
+                    <a href="https://www.spiked-online.com/video/the-hidden-dangers-of-the-gaza-hostage-deal/" target="_blank" rel="noopener" style="text-decoration: none;">
+                                                <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2025/01/website-720x405.jpg" height="315" width="560" style="border: 0; display: block;">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="padding: 0 0 5px; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                    spiked                </td>
+            </tr>
+            <tr>
+                <td align="left" style="color: #4a4a4a;font-family: cardo, Georgia, 'Times New Roman', serif;font-size: 24px;font-weight: 700;line-height: 1.2em;">
+                    <a href="https://www.spiked-online.com/video/the-hidden-dangers-of-the-gaza-hostage-deal/" target="_blank" rel="noopener" style="color: #4a4a4a;text-decoration: none;">
+                                                    <img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/play.png" height="24" width="28" alt="Video" style="border: 0; display: inline; vertical-align: top;">
+                        The hidden dangers of the Gaza hostage deal                    </a>
+                                    </td>
+            </tr>
+        </table>
+    </td>
+</tr>
 
-    document.getElementById('lbl').innerHTML = `
-        <div class="container">
-          <div id="date"> ${date}</div>
-          <div class="greeting">${greet}</div>
-        <div/>
-    `;
-</script> 
+
+<tr>
+    <td class="content-row" style="padding: 0 20px 30px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                                                            
+                                <td>
+                                                                            <a href="https://www.tickettailor.com/events/ourfight/1536818/r/spmail" target="_blank" rel="noopener">
+                                                                        <img class="w-100" src="https://www.spiked-online.com/wp-content/uploads/2023/11/2025-02-09-remake-the-promise-spiked-newsletter.jpg" height="160" width="560" style="border: 0; display: block;">
+                                    
+                                                                            </a>
+                                                                    </td>
+
+                                                    </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>                                                           <tr>
+                                    <td class="content-row" style="padding: 0 20px 40px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td align="center" style="border-bottom: 1px solid #c92121; border-top: 1px solid #c92121; padding: 10px 0; color: #c92121;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 24px;font-weight: 700;text-transform: uppercase;line-height: 1.2em;">
+                                                    More Spiked newsletters                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                
+                                <tr>
+                                    <td align="center" class="content-row" style="padding: 0 20px 60px;">
+                                                                                    <table class="two-cols" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    
+                                                        <td align="center" valign="top" class="first" style="padding-right: 10px; width: 270px;">
+                                                            <table id="other-lists" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr>
+                                                                    <td class="list-image" valign="top" align="center" style="border-bottom: 1px solid #2B2E42; height: 85px; padding: 0 0 15px;">
+                                                                        <a href="https://www.spiked-online.com/newsletters/" target="_blank" rel="noopener">
+                                                                                                                                                            <img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/logo-weekly-small.png" height="53" width="161" alt="Spiked" style="border: 0; display: block;">
+                                                                                                                                                    </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="list-text" align="center" style="color: #2B2E42;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 300;line-height: 1.5em; padding: 10px 10px 0;">
+                                                                        The week’s must-reads, <br />
+every Saturday morning                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                        
+                                                        <td align="center" valign="top" class="second" style="padding-left: 10px; width: 270px;">
+                                                            <table id="other-lists" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr>
+                                                                    <td class="list-image" valign="top" align="center" style="border-bottom: 1px solid #2B2E42; height: 85px; padding: 0 0 15px;">
+                                                                        <a href="https://www.spiked-online.com/newsletters/" target="_blank" rel="noopener">
+                                                                                                                                                            <img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/logo-long-read-small.png" height="85" width="159" alt="Spiked" style="border: 0; display: block;">
+                                                                                                                                                    </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="list-text" align="center" style="color: #2B2E42;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 18px;font-weight: 300;line-height: 1.5em; padding: 10px 10px 0;">
+                                                                        Bold thinking, <br />
+every Sunday                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                                                                        </tr>
+                                            </table>
+                                                                            </td>
+                                </tr>
+                            
+                            <tr>
+                                <td align="center" class="content-row" style="padding: 0 20px 30px;">
+                                    <table style="width: 220px;" id="social-icons" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="padding: 0 20px 0 0; width: 40px;">
+                                                <a href="https://www.facebook.com/spikedonline" target="_blank" rel="noopener" style="text-decoration: none;"><img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/facebook.png" height="40" width="40" alt="Facebook" style="border: 0; display: block;"></a>
+                                            </td>
+                                            <td style="padding: 0 20px 0 0; width: 40px;">
+                                                <a href="https://www.twitter.com/spikedonline" target="_blank" rel="noopener" style="text-decoration: none;"><img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/twitter.png" height="40" width="40" alt="Twitter" style="border: 0; display: block;"></a>
+                                            </td>
+                                            <td style="padding: 0 20px 0 0; width: 40px;">
+                                                <a href="https://www.youtube.com/channel/UCRK4_2FGAAmajCaB8ZefJHw" target="_blank" rel="noopener" style="text-decoration: none;"><img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/youtube.png" height="40" width="40" alt="YouTube" style="border: 0; display: block;"></a>
+                                            </td>
+                                            <td style="width: 40px;">
+                                                <a href="https://www.spiked-online.com/feed/" target="_blank" rel="noopener" style="text-decoration: none;"><img src="https://www.spiked-online.com/wp-content/themes/spiked-2018/newsletter/images/rss.png" height="40" width="40" alt="RSS" style="border: 0; display: block;"></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="background: #c92121; padding: 30px 20px;">
+                                    <table id="footer" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" style="border-top: 1px solid #ffffff; padding: 20px 0 0; color: #ffffff;font-family: roboto-condensed, Arial, Helvetica, sans-serif;font-size: 16px;font-weight: 400;line-height: 1.5em;">
+                                                Been forwarded this newsletter? <a href="*|LIST:SUBSCRIBE|*" target="_blank" style="color: #ffffff">Sign up for free</a>.                                                <br>
+                                                If you no longer wish to receive this newsletter, <a href="*|UNSUB|*" target="_blank" style="color: #ffffff">unsubscribe here</a>.                                                <br><br>
+                                                To find out about advertising and commercial partnerships, <a href="/cdn-cgi/l/email-protection#5f293629712d3a383e311f2c2f36343a3b7230313336313a713c3032" style="color: #ffffff">click here</a>.                                                <br><br>
+                                                c/o Sierra Quebec Bravo  7th Floor, 77 Marsh Wall London E14 9SH United Kingdom                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            *|IF:REWARDS|*
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td align="center" style="background: #d8d8d8; padding: 60px 0;">*|REWARDS|*</td>
+                    </tr>
+                </table>
+            *|END:IF|*
+        </td>
+    </tr>
+</table>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
